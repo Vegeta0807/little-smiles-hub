@@ -47,10 +47,11 @@ export const HeroScene = () => {
   const reduce =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduce) return <div className="absolute inset-0 bg-gradient-fade" />;
+  if (reduce) return <div className="absolute inset-0 h-full min-h-[100svh] bg-gradient-fade" />;
   return (
-    <div className="absolute inset-0 -z-0">
+    <div className="absolute inset-0 h-full min-h-[100svh] w-full">
       <Canvas
+        className="h-full min-h-[100svh] w-full"
         camera={{ position: [0, 0, 5], fov: 50 }}
         dpr={[1, 1.5]}
         gl={{ antialias: true, alpha: true }}
