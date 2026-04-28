@@ -53,7 +53,7 @@ export const Booking = () => {
     setSubmitting(true);
     const { data, error } = await supabase
       .from("bookings")
-      .insert(parsed.data)
+      .insert([parsed.data])
       .select("id")
       .single();
     setSubmitting(false);
