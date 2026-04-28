@@ -1,16 +1,41 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useEffect } from "react";
+import { Nav } from "@/components/site/Nav";
+import { Hero } from "@/components/site/Hero";
+import { About } from "@/components/site/About";
+import { Services } from "@/components/site/Services";
+import { Why } from "@/components/site/Why";
+import { Reviews } from "@/components/site/Reviews";
+import { Booking } from "@/components/site/Booking";
+import { Visit } from "@/components/site/Visit";
+import { Footer } from "@/components/site/Footer";
+import { Chatbot } from "@/components/site/Chatbot";
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+const Index = () => {
+  useEffect(() => {
+    document.title = "32 Dentz Dental Clinic — Pediatric & Family Dentistry, Navi Mumbai";
+    const meta = document.querySelector('meta[name="description"]') ||
+      Object.assign(document.createElement("meta"), { name: "description" });
+    meta.setAttribute(
+      "content",
+      "32 Dentz Dental Clinic in Seawoods, Navi Mumbai — pediatric specialists, laser dentistry, sedation & general anesthesia. 4.7★ on Google. Book online."
+    );
+    if (!meta.parentElement) document.head.appendChild(meta);
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <main className="bg-background text-foreground">
+      <Nav />
+      <Hero />
+      <About />
+      <Services />
+      <Why />
+      <Reviews />
+      <Booking />
+      <Visit />
+      <Footer />
+      <Chatbot />
+    </main>
   );
 };
-
-const Index = PlaceholderIndex;
 
 export default Index;
