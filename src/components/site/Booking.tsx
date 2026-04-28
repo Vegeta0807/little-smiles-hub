@@ -51,9 +51,13 @@ export const Booking = () => {
       return;
     }
     setSubmitting(true);
+    const payload = parsed.data as {
+      name: string; phone: string; email: string; service: string;
+      preferred_date: string; preferred_time: string; notes?: string; is_child_patient: boolean;
+    };
     const { data, error } = await supabase
       .from("bookings")
-      .insert([parsed.data])
+      .insert([payload])
       .select("id")
       .single();
     setSubmitting(false);
