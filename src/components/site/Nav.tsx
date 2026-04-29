@@ -65,6 +65,7 @@ export const Nav = () => {
           </a>
           <a
             href="#book"
+            onClick={(e) => handleNavClick(e, "#book")}
             className="inline-flex items-center rounded-full bg-ink text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
           >
             Book appointment
