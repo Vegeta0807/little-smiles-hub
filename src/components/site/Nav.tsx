@@ -13,6 +13,18 @@ export const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith("#")) return;
+    e.preventDefault();
+    setOpen(false);
+    const id = href.slice(1);
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", href);
+    }
+  };
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
@@ -30,7 +42,7 @@ export const Nav = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 h-16">
-        <a href="#top" className="flex items-baseline gap-1.5 font-semibold tracking-tight text-ink">
+        <a href="#top" onClick={(e) => handleNavClick(e, "#top")} className="flex items-baseline gap-1.5 font-semibold tracking-tight text-ink">
           <span className="text-xl">32</span>
           <span className="text-xl">Dentz</span>
           <span className="ml-1 h-1.5 w-1.5 rounded-full bg-ink/80" />
@@ -38,7 +50,7 @@ export const Nav = () => {
 
         <nav className="hidden md:flex items-center gap-8 text-sm text-foreground/80">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-ink transition-colors">
+            <a key={l.href} href={l.href} onClick={(e) => handleNavClick(e, l.href)} className="hover:text-ink transition-colors">
               {l.label}
             </a>
           ))}
@@ -53,6 +65,7 @@ export const Nav = () => {
           </a>
           <a
             href="#book"
+            onClick={(e) => handleNavClick(e, "#book")}
             className="inline-flex items-center rounded-full bg-ink text-primary-foreground px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
           >
             Book appointment
@@ -81,7 +94,7 @@ export const Nav = () => {
                 <a
                   key={l.href}
                   href={l.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => handleNavClick(e, l.href)}
                   className="text-foreground/80"
                 >
                   {l.label}
@@ -89,7 +102,7 @@ export const Nav = () => {
               ))}
               <a
                 href="#book"
-                onClick={() => setOpen(false)}
+                onClick={(e) => handleNavClick(e, "#book")}
                 className="rounded-full bg-ink text-primary-foreground px-4 py-2 text-sm font-medium text-center"
               >
                 Book appointment
