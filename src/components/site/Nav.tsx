@@ -13,16 +13,25 @@ export const Nav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
+  const scrollToHash = (href: string) => {
+    const el = document.getElementById(href.slice(1));
+    if (!el) return;
+
+    const headerOffset = 72;
+    const top = el.getBoundingClientRect().top + window.scrollY - headerOffset;
+    const scrollTarget = document.scrollingElement || document.documentElement;
+
+    window.scrollTo({ top, behavior: "smooth" });
+    scrollTarget.scrollTo?.({ top, behavior: "smooth" });
+    document.documentElement.scrollTop = top;
+    document.body.scrollTop = top;
+  };
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!href.startsWith("#")) return;
-    e.preventDefault();
     setOpen(false);
-    const id = href.slice(1);
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      history.replaceState(null, "", href);
-    }
+    window.setTimeout(() => scrollToHash(href), 0);
+    window.setTimeout(() => scrollToHash(href), 250);
   };
 
   useEffect(() => {
