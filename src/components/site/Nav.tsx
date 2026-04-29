@@ -94,7 +94,7 @@ export const Nav = () => {
                 <a
                   key={l.href}
                   href={l.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => handleNavClick(e, l.href)}
                   className="text-foreground/80"
                 >
                   {l.label}
@@ -102,7 +102,7 @@ export const Nav = () => {
               ))}
               <a
                 href="#book"
-                onClick={() => setOpen(false)}
+                onClick={(e) => handleNavClick(e, "#book")}
                 className="rounded-full bg-ink text-primary-foreground px-4 py-2 text-sm font-medium text-center"
               >
                 Book appointment
