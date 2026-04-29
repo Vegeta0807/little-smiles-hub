@@ -42,7 +42,7 @@ export const Nav = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 h-16">
-        <a href="#top" className="flex items-baseline gap-1.5 font-semibold tracking-tight text-ink">
+        <a href="#top" onClick={(e) => handleNavClick(e, "#top")} className="flex items-baseline gap-1.5 font-semibold tracking-tight text-ink">
           <span className="text-xl">32</span>
           <span className="text-xl">Dentz</span>
           <span className="ml-1 h-1.5 w-1.5 rounded-full bg-ink/80" />
@@ -50,7 +50,7 @@ export const Nav = () => {
 
         <nav className="hidden md:flex items-center gap-8 text-sm text-foreground/80">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="hover:text-ink transition-colors">
+            <a key={l.href} href={l.href} onClick={(e) => handleNavClick(e, l.href)} className="hover:text-ink transition-colors">
               {l.label}
             </a>
           ))}
