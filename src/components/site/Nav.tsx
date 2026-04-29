@@ -23,14 +23,15 @@ export const Nav = () => {
 
     window.scrollTo({ top, behavior: "smooth" });
     scrollTarget.scrollTo?.({ top, behavior: "smooth" });
-    history.replaceState(null, "", href);
+    document.documentElement.scrollTop = top;
+    document.body.scrollTop = top;
   };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!href.startsWith("#")) return;
-    e.preventDefault();
     setOpen(false);
-    requestAnimationFrame(() => scrollToHash(href));
+    window.setTimeout(() => scrollToHash(href), 0);
+    window.setTimeout(() => scrollToHash(href), 250);
   };
 
   useEffect(() => {
